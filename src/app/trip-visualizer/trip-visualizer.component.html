@@ -1,0 +1,21 @@
+<div class="trip-container">
+    <div class="input-section">
+      <input type="text" placeholder="Start Point" [value]="startPoint()" (input)="startPoint.set($any($event.target).value)" class="input-box" />
+      <input type="text" placeholder="End Point" [value]="endPoint()" (input)="endPoint.set($any($event.target).value)" class="input-box" />
+      <button (click)="addTrip()" class="add-btn">Add Trip</button>
+    </div>
+  
+    <div class="trip-visual">
+      <ng-container *ngFor="let trip of trips(); let i = index">
+        <div class="trip-segment" [ngClass]="getLevel(trip, i)">
+          <div class="dot"></div>
+          <div class="line">
+            <span *ngIf="getLevel(trip, i) === 'level-1-arrow'" class="arrow">→</span>
+          </div>
+          <div class="labels">
+            {{ trip.from.slice(0,3) }} - {{ trip.to.slice(0,3) }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
